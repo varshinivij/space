@@ -4,4 +4,4 @@ import App from './App'
 import './index.css'
 
 root = React.createRoot(document.getElementById('root'));
-root.render(App);
+root.render(<App />);
