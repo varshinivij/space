@@ -1,0 +1,6 @@
+{
+    "dataset_id": "2",
+    "dataset_version_id": "2",
+    "dataset_title": "BMMC Multiome genes",
+    "dataset_h5ad_path": "openproblems_bmmc_multiome_genes_filtered.h5ad "
+}
