@@ -14,7 +14,7 @@ function Sample(){
       <h1>Welcome to the Project Builder Application</h1>
       <h2>This is my first-application so I am very nervous</h2>
       <h2>Do you want to hear something cool?</h2>
-      <button onClick={handleOnClick}>{state}</button>
+      <button value="clicked" onClick={handleOnClick}>{state}</button>
       <img src='/coder.jpg'/>
     </div> );
 }
