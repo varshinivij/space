@@ -15,7 +15,7 @@ function Sample(){
       <h2>This is my first-application so I am very nervous</h2>
       <h2>Do you want to hear something cool?</h2>
       <button onClick={handleOnClick}>{state}</button>
-      <img href='././public/coder'/>
+      <img src='/coder.jpg'/>
     </div> );
 }
 
