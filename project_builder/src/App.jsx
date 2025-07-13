@@ -1,15 +1,9 @@
 import React from 'react'
-import './App.css';
-import Sample from './sample';
-import Sample2 from './Sample2';
+import './index.css'
+import Sample from './Sample';
 
 function App() {
-  return (
-  <> 
-    {/* <Sample/> */}
-    <Sample2/> 
-  </>
-  );
+  return <Sample id="App"/> ;
 }
 
 export default App;
