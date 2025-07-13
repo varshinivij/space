@@ -1,9 +1,20 @@
-import './App.css'
+import './index.css'
+import {useState} from 'react';
+
 function Sample(){
-    return (<div>
+
+  const [state, setState] = useState(false);
+
+  function handleOnClick( {target} ){
+    console.log(`Button was ${target.value}`);
+    setState((prev) => !prev); 
+  }
+  
+  return (<div>
       <h1>Welcome to the Project Builder Application</h1>
       <h2>This is my first-application so I am very nervous</h2>
-      <p id="user">Are you ready to build? <button> Submit! </button> </p>
+      <h2>Do you want to hear something cool?</h2>
+      <button onClick={handleOnClick}>{state}</button>
       <img href='././public/coder'/>
     </div> );
 }
