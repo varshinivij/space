@@ -3,12 +3,13 @@
 h1{
     font-size: 25px;
     font-family: 'Roboto', sans-serif;
-    color: rgb(104, 114, 119);
+    color: rgb(197, 223, 236);
 }
 
-#main_app{
-    background:#090A18;
-    height: 100%;
+h2{
+    font-size: 20px;
+    font-family: 'Roboto', sans-serif;
+    color: rgb(220, 230, 235);
 }
 
 img{
@@ -16,8 +17,17 @@ img{
     width: 40%;
 }
 
+#main_app {
+  width: 100%;
+  display: flex;
+  justify-content: center; /* center horizontally */
+  padding: 2rem;
+  background-color: rgb(7, 7, 71);
+}
+
 .my_container {
   display: flex;
-  justify-content: center;
-  align-items: center;
+  flex-direction: column;
+  align-items: center; /* center all child elements horizontally */
+  width: 100%;
 }
