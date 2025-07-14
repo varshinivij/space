@@ -1,5 +1,7 @@
 import './index.css';
 import { useState } from 'react';
+import { Button, Container } from '@mui/material';
+
 
 function Sample() {
   const [state, setState] = useState(false);
@@ -7,17 +9,19 @@ function Sample() {
   function handleOnClick({ target }) {
     console.log(`Button was ${target.value}`);
     setState((prev) => !prev);
+    state ? text = "This is my first application ever" : text ="BYE THEN!"; 
   }
 
   return (
-    <div>
+    <div id='main_app'>
+      <Container maxWidth="sm">
       <h1>Welcome to the Project Builder Application</h1>
-      <h2>This is my first application so I am very nervous</h2>
-      <h2>Do you want to hear something cool?</h2>
-      <button value="clicked" onClick={handleOnClick}>
-        {state ? 'Thanks!' : 'Click me!'}
-      </button>
+      <h1>Do you want to hear something cool?</h1>
+      <Button variant="contained" value="clicked" onClick={handleOnClick}>
+        {state ? 'Yes' : 'No'}
+      </Button>
       <img src="/coder.jpg" alt="coder" />
+      </Container>
     </div>
   );
 }

@@ -1,6 +1,15 @@
-.App {
+h1{
     font-size: medium;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    color: wh22ite;
-    background-color: fuchsia;
+    color: rgb(104, 114, 119);
+}
+
+#main_app{
+    background:#090A18;
+    height: 100%;
+}
+
+img{
+    height: 50%;
+    width: 40%;
 }
