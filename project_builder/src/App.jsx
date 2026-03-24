@@ -1,5 +1,6 @@
 import React from 'react';
 import { useState, useRef } from 'react';
+import wheelGif from './assets/wheel.gif'; 
 
 function App(){
   const [active, setActive] = useState(false);
@@ -11,13 +12,14 @@ function App(){
   
 
   const handleSubmit = () => {
-    if (curr >= 1) {
-      setArr((prev) => [...prev, textRef.current.value]);
+    if (curr > 0) {
+      let val = textRef.current.value.trim();
+      const newArr = [...arr, val];
+      setArr(newArr);
       setCurr((prev) => prev - 1);
       textRef.current.value = "";
-    } else if (active == false) {
-      setActive(true);
-    }
+      if (curr == 1) setActive(true);
+    }  
   }
 
   function getRandomActivity() {
@@ -30,7 +32,7 @@ function App(){
 
   return (
     <div>
-      {!active && <div>
+      {active == false && <div>
         <h1>Enter number of hours you will study </h1>
         <input type="number" onChange = {(e) => {setCount(Number(e.target.value)); setCurr(Number(e.target.value));}}/> 
         
@@ -41,9 +43,9 @@ function App(){
         <button type="button" onClick={handleSubmit}> Submit</button> </div> } 
     
 
-      {active && <div>
+      {active == true && <div>
         <h1> Spin the wheel! </h1>
-        <img src="./wheel.gif"></img>
+        <img src={wheelGif}></img>
         <h2> Your activity is {getRandomActivity()} </h2>
       </div>}
     </div>
