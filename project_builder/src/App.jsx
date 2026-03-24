@@ -11,11 +11,11 @@ function App(){
   
 
   const handleSubmit = () => {
-    if (curr > 0 && !active) {
+    if (curr >= 1) {
       setArr((prev) => [...prev, textRef.current.value]);
       setCurr((prev) => prev - 1);
       textRef.current.value = "";
-    } else {
+    } else if (active == false) {
       setActive(true);
     }
   }
@@ -33,11 +33,11 @@ function App(){
       {!active && <div>
         <h1>Enter number of hours you will study </h1>
         <input type="number" onChange = {(e) => {setCount(Number(e.target.value)); setCurr(Number(e.target.value));}}/> 
-        <h1>Enter {count} break activities you would enjoy </h1>
+        
         </div>}
 
-
-      { curr > 0 && <div> <input type="text" ref={textRef}></input>
+      { curr > 0 && <div> <h1>Enter {curr} break activities you would enjoy </h1>
+      <input type="text" ref={textRef}></input>
         <button type="button" onClick={handleSubmit}> Submit</button> </div> } 
     
 
