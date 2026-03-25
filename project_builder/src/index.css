@@ -1,33 +1,150 @@
-@import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=DM+Mono:wght@300;400&display=swap');
 
-h1{
-    font-size: 25px;
-    font-family: 'Roboto', sans-serif;
-    color: rgb(197, 223, 236);
+/* ── Variables ────────────────────────────────────── */
+:root {
+  --bg:        #0e0e10;
+  --surface:   #17171a;
+  --border:    #2a2a2f;
+  --accent:    #c8f060;
+  --accent-dim:#8aab35;
+  --text:      #f0ede6;
+  --muted:     #6b6b72;
+  --radius:    12px;
 }
 
-h2{
-    font-size: 20px;
-    font-family: 'Roboto', sans-serif;
-    color: rgb(220, 230, 235);
+/* ── Reset & Base ─────────────────────────────────── */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
 }
 
-img{
-    height: 50%;
-    width: 40%;
+body {
+  background-color: var(--bg);
+  color: var(--text);
+  font-family: 'DM Mono', monospace;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  /* subtle grid texture */
+  background-image:
+    linear-gradient(var(--border) 1px, transparent 1px),
+    linear-gradient(90deg, var(--border) 1px, transparent 1px);
+  background-size: 40px 40px;
 }
 
-#main_app {
+/* ── Card ─────────────────────────────────────────── */
+#root {
   width: 100%;
   display: flex;
-  justify-content: center; /* center horizontally */
+  justify-content: center;
   padding: 2rem;
-  background-color: rgb(7, 7, 71);
 }
 
-.my_container {
+.card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 3rem 3.5rem;
+  width: 100%;
+  max-width: 520px;
+  animation: fadeUp 0.4s ease both;
+}
+
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(16px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+/* ── Typography ───────────────────────────────────── */
+h1 {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.9rem;
+  font-weight: 700;
+  line-height: 1.2;
+  color: var(--text);
+  margin-bottom: 1.6rem;
+}
+
+h2 {
+  font-family: 'DM Mono', monospace;
+  font-size: 1rem;
+  font-weight: 400;
+  color: var(--accent);
+  margin-top: 1.4rem;
+  letter-spacing: 0.01em;
+}
+
+/* ── Inputs ───────────────────────────────────────── */
+input[type="number"],
+input[type="text"] {
+  width: 100%;
+  padding: 0.75rem 1rem;
+  background: var(--bg);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  color: var(--text);
+  font-family: 'DM Mono', monospace;
+  font-size: 0.95rem;
+  outline: none;
+  transition: border-color 0.2s;
+  margin-bottom: 1rem;
+}
+
+input[type="number"]:focus,
+input[type="text"]:focus {
+  border-color: var(--accent);
+}
+
+input[type="number"]::-webkit-inner-spin-button,
+input[type="number"]::-webkit-outer-spin-button {
+  opacity: 0.3;
+}
+
+/* ── Button ───────────────────────────────────────── */
+button {
+  display: inline-block;
+  padding: 0.7rem 1.8rem;
+  background: var(--accent);
+  color: #0e0e10;
+  border: none;
+  border-radius: var(--radius);
+  font-family: 'DM Mono', monospace;
+  font-size: 0.9rem;
+  font-weight: 400;
+  cursor: pointer;
+  letter-spacing: 0.04em;
+  transition: background 0.2s, transform 0.1s;
+}
+
+button:hover  { background: #d9ff6e; }
+button:active { transform: scale(0.97); }
+
+/* ── Wheel ────────────────────────────────────────── */
+.wheel-wrapper {
   display: flex;
   flex-direction: column;
-  align-items: center; /* center all child elements horizontally */
-  width: 100%;
+  align-items: center;
+  gap: 1.2rem;
+  margin-top: 0.5rem;
+}
+
+.wheel-wrapper img {
+  width: 180px;
+  height: 180px;
+  border-radius: 50%;
+  border: 2px solid var(--accent-dim);
+  object-fit: cover;
+}
+
+/* ── Counter badge ────────────────────────────────── */
+.counter {
+  display: inline-block;
+  font-size: 0.75rem;
+  color: var(--muted);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  margin-bottom: 0.5rem;
 }
