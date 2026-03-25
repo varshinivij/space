@@ -19,7 +19,7 @@ function App(){
     const time = setTimeout(()=> {
       setshowClick(true);
       setfinalClick(true);
-    }, 1000);
+    }, 3000);
     return () => clearTimeout(time);
   }, [click]);
   
@@ -62,7 +62,7 @@ function App(){
           <img src={wheelPng}/> 
           </div>}
         {click == true && finalClick == false && <img src={wheelGif}/> }
-        {showClick == true && <h2> Your activity is {getRandomActivity()} </h2>}
+        {click == true && showClick == true && <h2> Your activity is {getRandomActivity()} </h2>}
       </div>}
     </div>
   );

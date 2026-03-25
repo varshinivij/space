@@ -1,15 +1,20 @@
-@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=DM+Mono:wght@300;400&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Baloo+2:wght@400;500;600;700;800&family=Quicksand:wght@400;500;600;700&display=swap');
 
 /* ── Variables ────────────────────────────────────── */
 :root {
-  --bg:        #0e0e10;
-  --surface:   #17171a;
-  --border:    #2a2a2f;
-  --accent:    #c8f060;
-  --accent-dim:#8aab35;
-  --text:      #f0ede6;
-  --muted:     #6b6b72;
-  --radius:    12px;
+  --bg:          #e8ddd0;
+  --surface:     #f7f0e8;
+  --surface2:    #ede4d8;
+  --border:      #cfc0aa;
+  --accent:      #b5784a;
+  --accent-warm: #d4926a;
+  --accent-soft: #f0dcc8;
+  --text:        #3d2e1e;
+  --text-soft:   #7a5c42;
+  --muted:       #a08060;
+  --radius:      24px;
+  --radius-sm:   14px;
+  --radius-pill: 100px;
 }
 
 /* ── Reset & Base ─────────────────────────────────── */
@@ -22,20 +27,21 @@
 body {
   background-color: var(--bg);
   color: var(--text);
-  font-family: 'DM Mono', monospace;
+  font-family: 'Quicksand', sans-serif;
   min-height: 100vh;
   display: flex;
   align-items: center;
   justify-content: center;
 
-  /* subtle grid texture */
+  /* linen texture via repeating dots */
   background-image:
-    linear-gradient(var(--border) 1px, transparent 1px),
-    linear-gradient(90deg, var(--border) 1px, transparent 1px);
-  background-size: 40px 40px;
+    radial-gradient(circle at 15% 85%, #d9cfc4 0%, transparent 40%),
+    radial-gradient(circle at 85% 15%, #ddd5c8 0%, transparent 40%),
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='4' height='4'%3E%3Crect width='1' height='1' fill='%23c0b09880' /%3E%3C/svg%3E");
+  background-size: auto, auto, 4px 4px;
 }
 
-/* ── Card ─────────────────────────────────────────── */
+/* ── Layout ───────────────────────────────────────── */
 #root {
   width: 100%;
   display: flex;
@@ -45,106 +51,182 @@ body {
 
 .card {
   background: var(--surface);
-  border: 1px solid var(--border);
+  border: 1.5px solid var(--border);
   border-radius: var(--radius);
-  padding: 3rem 3.5rem;
+  padding: 2.8rem 3rem;
   width: 100%;
-  max-width: 520px;
-  animation: fadeUp 0.4s ease both;
+  max-width: 480px;
+  box-shadow:
+    0 1px 0 #fff inset,
+    0 12px 40px rgba(100, 70, 40, 0.14),
+    0 2px 8px rgba(100, 70, 40, 0.08);
+  animation: rise 0.45s cubic-bezier(0.34, 1.4, 0.64, 1) both;
 }
 
-@keyframes fadeUp {
-  from { opacity: 0; transform: translateY(16px); }
-  to   { opacity: 1; transform: translateY(0); }
+@keyframes rise {
+  from { opacity: 0; transform: translateY(20px) scale(0.97); }
+  to   { opacity: 1; transform: translateY(0) scale(1); }
+}
+
+/* ── Section dividers ─────────────────────────────── */
+.counter {
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
+}
+
+.counter + .counter {
+  margin-top: 1.6rem;
+  padding-top: 1.6rem;
+  border-top: 1.5px dashed var(--border);
 }
 
 /* ── Typography ───────────────────────────────────── */
 h1 {
-  font-family: 'Playfair Display', serif;
-  font-size: 1.9rem;
+  font-family: 'Baloo 2', cursive;
+  font-size: 1.55rem;
   font-weight: 700;
-  line-height: 1.2;
+  line-height: 1.25;
   color: var(--text);
-  margin-bottom: 1.6rem;
+  margin-bottom: 1.2rem;
+  letter-spacing: -0.01em;
 }
 
+/* activity list items */
 h2 {
-  font-family: 'DM Mono', monospace;
-  font-size: 1rem;
-  font-weight: 400;
-  color: var(--accent);
-  margin-top: 1.4rem;
+  font-family: 'Quicksand', sans-serif;
+  font-size: 0.88rem;
+  font-weight: 600;
+  color: var(--text-soft);
+  background: var(--surface2);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  padding: 0.4rem 0.9rem;
+  margin-top: 0.4rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
   letter-spacing: 0.01em;
+}
+
+h2::before {
+  content: '☕';
+  font-size: 0.85rem;
+}
+
+/* result text */
+.wheel-wrapper h2 {
+  font-family: 'Baloo 2', cursive;
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: var(--accent);
+  background: var(--accent-soft);
+  border-color: var(--accent-warm);
+  padding: 0.6rem 1.4rem;
+  justify-content: center;
+  margin-top: 0;
+}
+
+.wheel-wrapper h2::before {
+  content: '✨';
 }
 
 /* ── Inputs ───────────────────────────────────────── */
 input[type="number"],
 input[type="text"] {
   width: 100%;
-  padding: 0.75rem 1rem;
-  background: var(--bg);
-  border: 1px solid var(--border);
-  border-radius: var(--radius);
+  padding: 0.8rem 1.1rem;
+  background: var(--surface2);
+  border: 1.5px solid var(--border);
+  border-radius: var(--radius-sm);
   color: var(--text);
-  font-family: 'DM Mono', monospace;
-  font-size: 0.95rem;
+  font-family: 'Quicksand', sans-serif;
+  font-size: 1rem;
+  font-weight: 600;
   outline: none;
-  transition: border-color 0.2s;
-  margin-bottom: 1rem;
+  transition: all 0.2s;
+  margin-bottom: 0.9rem;
+  margin-top: 0.2rem;
 }
 
-input[type="number"]:focus,
-input[type="text"]:focus {
+input:focus {
   border-color: var(--accent);
+  background: #fff9f4;
+  box-shadow: 0 0 0 3px rgba(181, 120, 74, 0.14);
 }
+
+input::placeholder { color: var(--muted); font-weight: 500; }
 
 input[type="number"]::-webkit-inner-spin-button,
-input[type="number"]::-webkit-outer-spin-button {
-  opacity: 0.3;
-}
+input[type="number"]::-webkit-outer-spin-button { opacity: 0.25; }
 
 /* ── Button ───────────────────────────────────────── */
 button {
-  display: inline-block;
-  padding: 0.7rem 1.8rem;
+  width: 100%;
+  padding: 0.85rem 1.6rem;
   background: var(--accent);
-  color: #0e0e10;
+  color: #fdf6ee;
   border: none;
-  border-radius: var(--radius);
-  font-family: 'DM Mono', monospace;
-  font-size: 0.9rem;
-  font-weight: 400;
+  border-radius: var(--radius-pill);
+  font-family: 'Baloo 2', cursive;
+  font-size: 1.05rem;
+  font-weight: 700;
   cursor: pointer;
-  letter-spacing: 0.04em;
-  transition: background 0.2s, transform 0.1s;
+  letter-spacing: 0.03em;
+  transition: all 0.18s;
+  box-shadow:
+    0 4px 0 #8a5530,
+    0 6px 18px rgba(181, 120, 74, 0.28);
+  margin-top: 0.4rem;
 }
 
-button:hover  { background: #d9ff6e; }
-button:active { transform: scale(0.97); }
+button:hover {
+  background: var(--accent-warm);
+  transform: translateY(-2px);
+  box-shadow:
+    0 6px 0 #8a5530,
+    0 10px 24px rgba(181, 120, 74, 0.3);
+}
 
-/* ── Wheel ────────────────────────────────────────── */
+button:active {
+  transform: translateY(3px);
+  box-shadow:
+    0 1px 0 #8a5530,
+    0 2px 8px rgba(181, 120, 74, 0.2);
+}
+
+/* ── Wheel wrapper ────────────────────────────────── */
 .wheel-wrapper {
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 1.2rem;
-  margin-top: 0.5rem;
+  gap: 1.6rem;
+  padding: 0.5rem 0;
+}
+
+/* make the wheel image large and centred */
+.wheel-wrapper > div {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.4rem;
+  width: 100%;
 }
 
 .wheel-wrapper img {
-  width: 180px;
-  height: 180px;
+  width: 240px;
+  height: 240px;
   border-radius: 50%;
-  border: 2px solid var(--accent-dim);
+  border: 3px solid var(--border);
   object-fit: cover;
+  box-shadow:
+    0 8px 28px rgba(100, 70, 40, 0.2),
+    0 0 0 6px var(--accent-soft);
+  display: block;
 }
 
-/* ── Counter badge ────────────────────────────────── */
-.counter {
-  display: inline-block;
-  font-size: 0.75rem;
-  color: var(--muted);
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-  margin-bottom: 0.5rem;
+/* spin button inside wheel-wrapper should not be full width */
+.wheel-wrapper button {
+  width: auto;
+  padding: 0.75rem 2.4rem;
 }
