@@ -19,7 +19,7 @@ function App(){
     const time = setTimeout(()=> {
       setshowClick(true);
       setfinalClick(true);
-    }, 3000);
+    }, 10000);
     return () => clearTimeout(time);
   }, [click]);
   
